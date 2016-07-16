@@ -1,0 +1,11 @@
+# Output directory
+/plz-out
+/.plz-cache
+# Local config file
+.plzconfig.local
+# In case someone uses an IDE
+.idea
+*.iml
+# And in case someone runs Python code locally
+*.pyc
+__pycache__
