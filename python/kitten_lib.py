@@ -25,9 +25,9 @@ def get_kitten(port, breed=None):
     """
     request = kitten_pb2.GetKittenRequest()
     if breed:
-        request.breed = Breed
+        request.breed = kitten_pb2.Breed.Value(breed)
     response = fetch_kitten(request, port)
-    if breed and response.kitten.breed != breed:
+    if breed and response.kitten.breed != request.breed:
         raise Exception('Unacceptable kitten breed: %s' % response.kitten.breed)
     return response.kitten
 

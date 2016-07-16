@@ -1,0 +1,69 @@
+# build_defs files are files that define new build rules for Please.
+# It's actually possible to write these inline in BUILD files, but generally
+# it's nicer to put them into separate files for reuse.
+
+
+def integration_test(client, server, port, breed):
+    """Defines a test that brings up a client and a server and has them communicate.
+
+    The two aren't necessarily the same language, but they should all be able to
+    communicate with one another.
+
+    Args:
+      client: The language of the client.
+      server: The language of the server.
+      port: Port to run on.
+      breed: Breed of kitten to request. Each server can only provide one...
+    """
+    if client not in _KNOWN_LANGUAGES:
+        raise ValueError('Unknown client language: %s' % client)
+    if server not in _KNOWN_LANGUAGES:
+        raise ValueError('Unknown server language: %s' % server)
+    client_target = '//%s:client' % client
+    server_target = '//%s:server' % server
+    test_cmd = _COMMAND_TEMPLATE % {
+        'port': port,
+        'breed': breed,
+        # $(location ) is obviously not a normal Bash pattern, it is something that
+        # Please replaces for you in commands. It's useful for finding the location
+        # of an input file or rule.
+        'client': '$(location %s)' % client_target,
+        'server': '$(location %s)' % server_target,
+    }
+
+    # gentest is an 'advanced' build rule which allows you to define an arbitrary
+    # test. It's relatively low-level compared to python_test or java_test etc,
+    # but sometimes it's what you need.
+    gentest(
+        name = '%s_client_vs_%s_server_test' % (client, server),
+        test_cmd = test_cmd,
+        # The 'data' attribute defines runtime data files that are made available
+        # to the test in its work directory. It's useful for tests that need
+        # additional files in a predictable place but don't want to package them
+        # themselves.
+        data = [client_target, server_target],
+        # Normally tests produce an xUnit-style XML file or Go-format test output
+        # as results which Please parses. We're not going to do that so we'll be
+        # judged just on whether our test returns successfully or not.
+        no_test_output = True,
+        # Tests can be marked as flaky, in which case Please automatically retries
+        # them up to three times. They pass as soon as any one passes.
+        # In this case our tests can be a bit flaky because when they're all run
+        # at once sometimes things mysteriously time out.
+        flaky = True,
+    )
+
+
+# Some implementation details of the rule.
+_KNOWN_LANGUAGES = {'cc', 'java', 'python', 'go'}
+
+_COMMAND_TEMPLATE = """
+%(server)s --port %(port)d &
+PID=$!
+# Wait a bit to give the server a chance to start.
+sleep 2s
+%(client)s --port %(port)d --breed %(breed)s
+RET=$?
+kill $PID
+exit $RET
+"""

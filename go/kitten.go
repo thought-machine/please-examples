@@ -30,7 +30,10 @@ func FetchKitten(request *pb.GetKittenRequest, port int) *pb.GetKittenResponse {
 	client := pb.NewPetShopClient(conn)
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-	response, err := client.GetKitten(ctx, request)
+	// Don't fail fast, it's awkward in the integration tests if servers aren't
+	// ready yet, especially since Go tends to be faster initialising than at
+	// least some of the others.
+	response, err := client.GetKitten(ctx, request, grpc.FailFast(false))
 	if err != nil {
 		log.Fatalf("Failed to fetch kitten: %s", err)
 	}

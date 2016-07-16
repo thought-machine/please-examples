@@ -22,6 +22,11 @@ java_binary(
     deps = [
         ':lib',
     ],
+    # Setting this marks the .jar as executable and puts a shebang on the beginning
+    # so you can run it directly in a shell. It's not the default for historical
+    # reasons which really aren't very interesting.
+    self_executable = True,
+    visibility = ['PUBLIC'],
 )
 
 java_binary(
@@ -30,6 +35,8 @@ java_binary(
     deps = [
         ':lib',
     ],
+    self_executable = True,
+    visibility = ['PUBLIC'],
 )
 
 # A java_test is similar to a java_binary but is run through 'plz test'
