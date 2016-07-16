@@ -6,6 +6,9 @@
 ; run `./pleasew update` to update again.
 ;
 
+[java]
+defaulttestpackage = net.thoughtmachine
+
 [python]
 ; Makes recursive imports of third-party packages happier about this location.
 moduledir = third_party.python

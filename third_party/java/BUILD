@@ -9,7 +9,10 @@ package(default_visibility = ['PUBLIC'])
 maven_jar(
     name = 'protobuf',
     id = 'com.google.protobuf:protobuf-java:3.0.0-beta-3',
-    hash = 'ed118aa0276005ca49b18a3a2b77eaacdec95680',  # Verify that we get what we're expecting.
+    # Please can hash-verify downloaded artifacts so you're sure you get
+    # what you're expecting. This is particularly useful when fetching things
+    # from external repositories.
+    hash = 'ed118aa0276005ca49b18a3a2b77eaacdec95680',
     sources = False,  # Not available
 )
 
@@ -37,4 +40,28 @@ maven_jars(
     deps = [
         ':protobuf-java-util',
     ],
+)
+
+maven_jar(
+    name = 'junit',
+    id = 'junit:junit:4.12',
+    hash = 'sha1: a791201ac8a3d2a251045a52e264de01343ad2df',
+    # This means that this library will only be able to be used by tests
+    # (go_test rules and so forth). Obviously we'd be unlikely to use
+    # testify in production code, but it can be useful to enforce these
+    # things so nobody introduces such a dependency by accident.
+    test_only = True,
+)
+
+maven_jar(
+    name = 'mockito',
+    id = 'org.mockito:mockito-all:1.10.19',
+    hash = 'e93ceaea4cf704350fbb2a450ddbb7b4e3e062e3',
+    test_only = True,
+)
+
+maven_jar(
+    name = 'args4j',
+    id = 'args4j:args4j:2.32',
+    hash = 'a08fb9a7217df438872f27936058f594eab29396',
 )

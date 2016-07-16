@@ -1,5 +1,8 @@
 syntax = "proto3";
 
+option java_package = "net.thoughtmachine.please.examples";
+option java_outer_classname = "KittenProto";
+
 service PetShop {
     // Supplies one kitten to the caller.
     rpc GetKitten(GetKittenRequest) returns (GetKittenResponse);
