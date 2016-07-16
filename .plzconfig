@@ -6,6 +6,10 @@
 ; run `./pleasew update` to update again.
 ;
 
+[python]
+; Makes recursive imports of third-party packages happier about this location.
+moduledir = third_party.python
+
 [proto]
 ; Imports protobuf from a non-usual directory in generated code.
 pythonpackage = third_party.python.google.protobuf

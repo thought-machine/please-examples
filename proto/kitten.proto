@@ -16,10 +16,8 @@ enum Breed {
 message Kitten {
     string name = 1;
     Breed breed = 2;
-    float weight = 3;
-    int32 age = 4;
-    int64 dob = 5;
-    bool neutered = 6;
+    float weight = 3;  // in kg
+    int32 age = 4;  // in cat years
 }
 
 message GetKittenRequest {

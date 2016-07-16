@@ -14,6 +14,7 @@ pip_library(
     package_name = 'grpcio',
     version = '0.15.0',
     deps = [':enum', ':futures'],
+    zip_safe = False,  # cygrpc.so can't be imported from inside a .pex.
 )
 
 pip_library(
@@ -32,4 +33,10 @@ pip_library(
     name = 'futures',
     version = '3.0.5',
     outs = ['concurrent']
+)
+
+pip_library(
+    name = 'gflags',
+    version = '3.0.5',
+    package_name = 'python-gflags',
 )
