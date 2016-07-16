@@ -1,3 +1,5 @@
+# A python_library defines a reusable piece of Python code; this one we
+# will share between the client and server, and test it below.
 python_library(
     name = 'kitten_lib',
     srcs = ['kitten_lib.py'],
@@ -7,6 +9,8 @@ python_library(
     ],
 )
 
+# A python_binary builds a pex, a self-contained Python archive with
+# third-party dependencies included. These can be deployed and run easily.
 python_binary(
     name = 'client',
     main = 'client.py',
@@ -16,6 +20,7 @@ python_binary(
         '//third_party/python:gflags',
     ],
     zip_safe = False,  # Should not be needed after #119 is fixed
+    visibility = ['PUBLIC'],
 )
 
 python_binary(
@@ -27,8 +32,11 @@ python_binary(
         '//third_party/python:gflags',
     ],
     zip_safe = False,
+    visibility = ['PUBLIC'],
 )
 
+# A python_test also builds a pex, but is typically executed through
+# plz test which runs all the tests in it and produces the results.
 python_test(
     name = 'kitten_test',
     srcs = ['kitten_test.py'],
