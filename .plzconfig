@@ -1,0 +1,7 @@
+; Please config file
+; This file is necessary, even empty, to specify the root of the Please repository.
+;
+; We don't specify any version for this repo, so when running the wrapper
+; script for the first time it will fetch the latest version. Users can
+; run `./pleasew update` to update again.
+;
