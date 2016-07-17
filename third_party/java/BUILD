@@ -26,6 +26,13 @@ maven_jar(
     sources = False,
 )
 
+maven_jar(
+    name = 'protoc-gen-grpc-java',
+    id = 'io.grpc:protoc-gen-grpc-java:0.15.0',
+    hash = '72b7fdc7047cd628f5c6365f8f2f255b8a293cb6',
+    binary = True,
+)
+
 # maven_jars fetches a library and its transitive dependencies from Maven.
 # A little fiddling is needed here to handle dependencies that have no
 # sources available.
@@ -48,7 +55,7 @@ maven_jar(
     hash = 'sha1: a791201ac8a3d2a251045a52e264de01343ad2df',
     # This means that this library will only be able to be used by tests
     # (go_test rules and so forth). Obviously we'd be unlikely to use
-    # testify in production code, but it can be useful to enforce these
+    # junit in production code, but it can be useful to enforce these
     # things so nobody introduces such a dependency by accident.
     test_only = True,
 )

@@ -19,3 +19,4 @@ pythonpackage = third_party.python.google.protobuf
 grpcpythonplugin = `which grpc_python_plugin`
 ; Use a downloaded dep, this is easier to manage than a global installation.
 protocgoplugin = //third_party/go:protoc-gen-go
+grpcjavaplugin = //third_party/java:protoc-gen-grpc-java
