@@ -11,6 +11,8 @@ python_library(
 
 # A python_binary builds a pex, a self-contained Python archive with
 # third-party dependencies included. These can be deployed and run easily.
+# See https://github.com/pantsbuild/pex for more general information about
+# pexes and how they work and what they're useful for.
 python_binary(
     name = 'client',
     main = 'client.py',
@@ -19,7 +21,6 @@ python_binary(
         '//proto:kitten',
         '//third_party/python:gflags',
     ],
-    zip_safe = False,  # Should not be needed after #119 is fixed
     visibility = ['PUBLIC'],
 )
 
@@ -31,7 +32,6 @@ python_binary(
         '//proto:kitten',
         '//third_party/python:gflags',
     ],
-    zip_safe = False,
     visibility = ['PUBLIC'],
 )
 

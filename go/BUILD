@@ -1,6 +1,9 @@
 # A go_library is a collection of Go files compiled into one package.
 # Typically you'd have one of these per directory, corresponding to the
-# Go package structure.
+# Go package structure. Please doesn't fundamentally require that you obey
+# that structure but if you don't there's a reasonable chance of running
+# afoul of obtuse compiler errors.
+
 go_library(
     name = 'kittenlib',
     srcs = ['kitten.go'],

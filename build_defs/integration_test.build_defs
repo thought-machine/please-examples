@@ -3,6 +3,21 @@
 # it's nicer to put them into separate files for reuse.
 
 
+# Some implementation details of the rules below.
+_KNOWN_LANGUAGES = {'cc', 'java', 'python', 'go'}
+
+_COMMAND_TEMPLATE = """
+%(server)s --port %(port)d &
+PID=$!
+# Wait a bit to give the server a chance to start.
+sleep 2s
+%(client)s --port %(port)d --breed %(breed)s
+RET=$?
+kill $PID
+exit $RET
+"""
+
+
 def integration_test(client, server, port, breed):
     """Defines a test that brings up a client and a server and has them communicate.
 
@@ -24,14 +39,14 @@ def integration_test(client, server, port, breed):
     test_cmd = _COMMAND_TEMPLATE % {
         'port': port,
         'breed': breed,
-        # $(location ) is obviously not a normal Bash pattern, it is something that
+        # $(location ) is not a normal Bash pattern, it is something that
         # Please replaces for you in commands. It's useful for finding the location
         # of an input file or rule.
         'client': '$(location %s)' % client_target,
         'server': '$(location %s)' % server_target,
     }
 
-    # gentest is an 'advanced' build rule which allows you to define an arbitrary
+    # gentest is an advanced build rule which allows you to define an arbitrary
     # test. It's relatively low-level compared to python_test or java_test etc,
     # but sometimes it's what you need.
     gentest(
@@ -49,21 +64,6 @@ def integration_test(client, server, port, breed):
         # Tests can be marked as flaky, in which case Please automatically retries
         # them up to three times. They pass as soon as any one passes.
         # In this case our tests can be a bit flaky because when they're all run
-        # at once sometimes things mysteriously time out.
+        # at once sometimes things time out.
         flaky = True,
     )
-
-
-# Some implementation details of the rule.
-_KNOWN_LANGUAGES = {'cc', 'java', 'python', 'go'}
-
-_COMMAND_TEMPLATE = """
-%(server)s --port %(port)d &
-PID=$!
-# Wait a bit to give the server a chance to start.
-sleep 2s
-%(client)s --port %(port)d --breed %(breed)s
-RET=$?
-kill $PID
-exit $RET
-"""

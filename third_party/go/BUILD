@@ -4,7 +4,7 @@
 # anyone to use them.
 package(default_visibility = ['PUBLIC'])
 
-# go_get invokes, not surprisingly, 'go get' to fetch a third-party package.
+# go_get invokes, not unsurprisingly, 'go get' to fetch a third-party package.
 # Note that we can specify Git revisions to pin them to a particular version.
 go_get(
     name = 'grpc',
@@ -22,6 +22,9 @@ go_get(
     # This produces an executable tool that we use elsewhere;
     # marking this makes it easy to use in other rules or through
     # plz run since it will only produce a single output.
+    # Other rules would invoke it via a command like
+    # $(exe //third_party/go:protoc-gen-go) which Please will
+    # expand into the appropriate location.
     binary = True,
 )
 
@@ -36,8 +39,8 @@ go_get(
     get = 'github.com/stretchr/testify',
     revision = 'f390dcf405f7b83c997eac1b06768bb9f44dec18',
     # This means that this library will only be able to be used by tests
-    # (go_test rules and so forth). Obviously we'd be unlikely to use
-    # testify in production code, but it can be useful to enforce these
+    # (go_test rules and so forth). We'd be unlikely to use testify in
+    # production code, but it can be useful to enforce these
     # things so nobody introduces such a dependency by accident.
     test_only = True,
 )

@@ -15,7 +15,6 @@ class PetShop(kitten_pb2.BetaPetShopServicer):
         return kitten_pb2.GetKittenResponse(kitten=provide_kitten())
 
 
-
 def main():
     server = kitten_pb2.beta_create_PetShop_server(PetShop())
     server.add_insecure_port("localhost:%s" % FLAGS.port)
