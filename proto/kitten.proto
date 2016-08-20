@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option java_package = "net.thoughtmachine.please.examples";
+option java_outer_classname = "KittenProto";
+
+service PetShop {
+    // Supplies one kitten to the caller.
+    rpc GetKitten(GetKittenRequest) returns (GetKittenResponse);
+}
+
+enum Breed {
+    HALP = 0;
+    PERSIAN = 1;
+    BENGAL = 2;
+    RUSSIAN_BLUE = 3;
+    CORNISH_REX = 4;
+}
+
+message Kitten {
+    string name = 1;
+    Breed breed = 2;
+    float weight = 3;  // in kg
+    int32 age = 4;  // in cat years
+}
+
+message GetKittenRequest {
+    // Breed of kitten requested. If not given then the server
+    // may provide a kitten of any breed.
+    Breed breed = 1;
+}
+
+message GetKittenResponse {
+    Kitten kitten = 1;
+}
