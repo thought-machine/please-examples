@@ -1,4 +1,4 @@
-package kittenlib
+package lib
 
 import (
 	"fmt"

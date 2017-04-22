@@ -5,7 +5,7 @@ go_binary(
     name = 'client',
     srcs = ['client.go'],
     deps = [
-        '//go:kittenlib',
+        '//go/lib',
         '//proto:kitten',
         '//third_party/go:go-flags',
     ],

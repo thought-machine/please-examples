@@ -3,10 +3,10 @@
 # Go package structure. Please doesn't fundamentally require that you obey
 # that structure but if you don't there's a reasonable chance of running
 # afoul of obtuse compiler errors. Hence the server/client binaries are
-# in subdirectories.
+# in separate directories.
 
 go_library(
-    name = 'kittenlib',
+    name = 'lib',
     srcs = ['kitten.go'],
     deps = [
         '//proto:kitten',
@@ -22,7 +22,7 @@ go_test(
     name = 'kitten_test',
     srcs = ['kitten_test.go'],
     deps = [
-        ':kittenlib',
+        ':lib',
         '//third_party/go:testify',
     ],
 )
