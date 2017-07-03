@@ -7,7 +7,7 @@ import (
 
 	"github.com/jessevdk/go-flags"
 
-	"go/kittenlib"
+	"go/lib"
 	pb "proto/kitten"
 )
 
@@ -24,6 +24,6 @@ func main() {
 	if !present {
 		log.Fatalf("Unknown breed: %s", breed)
 	}
-	kitten := kittenlib.GetKitten(opts.Port, pb.Breed(breed))
+	kitten := lib.GetKitten(opts.Port, pb.Breed(breed))
 	fmt.Printf("Received a kitten:\n%s\n", kitten)
 }

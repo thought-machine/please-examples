@@ -9,7 +9,7 @@ import (
 	"github.com/jessevdk/go-flags"
 	"google.golang.org/grpc"
 
-	"go/kittenlib"
+	"go/lib"
 	pb "proto/kitten"
 )
 
@@ -26,7 +26,7 @@ func main() {
 		log.Fatalf("Failed to bind to port %d: %s", opts.Port, err)
 	}
 	s := grpc.NewServer()
-	pb.RegisterPetShopServer(s, &kittenlib.PetShopServer{})
+	pb.RegisterPetShopServer(s, &lib.PetShopServer{})
 	fmt.Printf("Serving on port %d\n", opts.Port)
 	s.Serve(lis)
 }

@@ -2,41 +2,17 @@
 # Typically you'd have one of these per directory, corresponding to the
 # Go package structure. Please doesn't fundamentally require that you obey
 # that structure but if you don't there's a reasonable chance of running
-# afoul of obtuse compiler errors.
+# afoul of obtuse compiler errors. Hence the server/client binaries are
+# in separate directories.
 
 go_library(
-    name = 'kittenlib',
+    name = 'lib',
     srcs = ['kitten.go'],
     deps = [
         '//proto:kitten',
         '//third_party/go:grpc',
     ],
-)
-
-# A go_binary builds a self-contained Go executable.
-# Note that unlike normal 'go build', there is no requirement to
-# necessarily have these in their own packages.
-go_binary(
-    name = 'client',
-    main = 'client.go',
-    deps = [
-        ':kittenlib',
-        '//proto:kitten',
-        '//third_party/go:go-flags',
-    ],
-    visibility = ['PUBLIC'],
-)
-
-go_binary(
-    name = 'server',
-    main = 'server.go',
-    deps = [
-        ':kittenlib',
-        '//proto:kitten',
-        '//third_party/go:grpc',
-        '//third_party/go:go-flags',
-    ],
-    visibility = ['PUBLIC'],
+    visibility = ['//go/...'],
 )
 
 # A go_test is similar to a go_binary in that it builds a self-contained
@@ -46,7 +22,7 @@ go_test(
     name = 'kitten_test',
     srcs = ['kitten_test.go'],
     deps = [
-        ':kittenlib',
+        ':lib',
         '//third_party/go:testify',
     ],
 )
