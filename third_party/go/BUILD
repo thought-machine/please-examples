@@ -25,7 +25,7 @@ go_get(
     # expand into the appropriate location.
     binary = True,
     get = 'github.com/golang/protobuf/protoc-gen-go',
-    revision = 'v1.5.0',
+    revision = '17ce1425424ab154092bbb43af630bd647f3bb0d',
 )
 
 go_get(
