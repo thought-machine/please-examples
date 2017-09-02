@@ -12,14 +12,14 @@ maven_jar(
     # Please can hash-verify downloaded artifacts so you're sure you get
     # what you're expecting. This is particularly useful when fetching things
     # from external repositories.
-    hash = 'ed118aa0276005ca49b18a3a2b77eaacdec95680',
+    hash = 'ea1115a7983c2c23b7d90ccef4a83675f4e3df9c',
     sources = False,  # Not available
 )
 
 maven_jar(
     name = 'protobuf-java-util',
     id = 'com.google.protobuf:protobuf-java-util:3.4.0',
-    hash = 'e7fb40f29053441632277d75952874b3e03bf68a',
+    hash = '65e518040d4f932b6dbd7a255f74509cac50066e',
     sources = False,
     deps = [
         ':protobuf',
@@ -30,7 +30,7 @@ maven_jar(
     name = 'protoc-gen-grpc-java',
     id = 'io.grpc:protoc-gen-grpc-java:1.6.1',
     binary = True,
-    hash = '72b7fdc7047cd628f5c6365f8f2f255b8a293cb6',
+    hash = 'c1da85124ac0f72659614a9789f42c63f8e5a8fe',
 )
 
 # maven_jars fetches a library and its transitive dependencies from Maven.

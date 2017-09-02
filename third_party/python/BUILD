@@ -9,7 +9,7 @@ package(default_visibility = ['PUBLIC'])
 pip_library(
     name = 'protobuf',
     version = '3.4.0',
-    outs = ['google/protobuf'],
+    outs = ['google'],
     deps = [
         ':six',
     ],
