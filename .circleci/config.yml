@@ -3,7 +3,7 @@ jobs:
    build:
      working_directory: ~/please-examples
      docker:
-       - image: thoughtmachine/please_examples:latest
+       - image: thoughtmachine/please-examples:latest
      steps:
        - checkout
        - run:
