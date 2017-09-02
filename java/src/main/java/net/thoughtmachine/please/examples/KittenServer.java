@@ -17,7 +17,7 @@ class KittenServer {
 
   private void serve() throws Exception {
     server = ServerBuilder.forPort(port)
-        .addService(PetShopGrpc.bindService(new PetShopService()))
+        .addService(new PetShopService())
         .build()
         .start();
     System.out.printf("Server started, listening on %d\n", port);
@@ -45,7 +45,7 @@ class KittenServer {
     server.serve();
   }
 
-  private class PetShopService implements PetShopGrpc.PetShop {
+  private class PetShopService extends PetShopGrpc.PetShopImplBase {
     @Override
     public void getKitten(KittenProto.GetKittenRequest req,
         StreamObserver<KittenProto.GetKittenResponse> responseObserver) {
