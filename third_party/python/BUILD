@@ -33,5 +33,5 @@ pip_library(
 pip_library(
     name = 'gflags',
     package_name = 'python-gflags',
-    version = '3.0.5',
+    version = '3.1.1',
 )

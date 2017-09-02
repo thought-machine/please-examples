@@ -48,7 +48,7 @@ func GetKitten(port int, breed pb.Breed) *pb.Kitten {
 	}
 	response := FetchKitten(&request, port)
 	if breed != pb.Breed_HALP && response.Kitten.Breed != breed {
-		log.Fatalf("Unexpected breed returned: %s", response.Kitten.Breed)
+		log.Fatalf("Unexpected breed returned: wanted %s, got %s", breed, response.Kitten.Breed)
 	}
 	return response.Kitten
 }

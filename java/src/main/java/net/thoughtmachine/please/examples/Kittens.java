@@ -40,14 +40,14 @@ class Kittens {
       builder.setBreed(breed);
     }
     KittenProto.GetKittenResponse response = fetchKitten(builder.build(), port);
-    if (breed != null && breed != response.getKitten().getBreed()) {
-      throw new RuntimeException("Unexpected kitten breed: " + response.getKitten().getBreed().toString());
+    if (breed != KittenProto.Breed.HALP && breed != response.getKitten().getBreed()) {
+      throw new RuntimeException("Unexpected kitten breed; wanted " + breed.toString() + ", got " + response.getKitten().getBreed().toString());
     }
     return response.getKitten();
   }
 
   public KittenProto.Kitten getKitten(int port) {
-    return getKitten(port, null);
+    return getKitten(port, KittenProto.Breed.HALP);
   }
 
 }

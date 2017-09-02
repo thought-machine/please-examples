@@ -22,7 +22,7 @@ func main() {
 	}
 	breed, present := pb.Breed_value[opts.Breed]
 	if !present {
-		log.Fatalf("Unknown breed: %s", breed)
+		log.Fatalf("Unknown breed: wanted %s", breed)
 	}
 	kitten := lib.GetKitten(opts.Port, pb.Breed(breed))
 	fmt.Printf("Received a kitten:\n%s\n", kitten)

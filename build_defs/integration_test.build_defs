@@ -35,7 +35,7 @@ def integration_test(client, server, port, breed):
     if server not in _KNOWN_LANGUAGES:
         raise ValueError('Unknown server language: %s' % server)
     client_target = '//%s:client' % ('go/client' if client == 'go' else client)
-    server_target = '//%s:server' % ('go/server' if client == 'go' else client)
+    server_target = '//%s:server' % ('go/server' if server == 'go' else server)
     test_cmd = _COMMAND_TEMPLATE % {
         'port': port,
         'breed': breed,
