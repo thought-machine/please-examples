@@ -8,7 +8,7 @@ package(default_visibility = ['PUBLIC'])
 # Note that it doesn't fetch dependencies, we have to specify them explicitly.
 maven_jar(
     name = 'protobuf',
-    id = 'com.google.protobuf:protobuf-java:3.0.0-beta-3',
+    id = 'com.google.protobuf:protobuf-java:3.4.0',
     # Please can hash-verify downloaded artifacts so you're sure you get
     # what you're expecting. This is particularly useful when fetching things
     # from external repositories.
@@ -18,19 +18,19 @@ maven_jar(
 
 maven_jar(
     name = 'protobuf-java-util',
-    id = 'com.google.protobuf:protobuf-java-util:3.0.0-beta-3',
+    id = 'com.google.protobuf:protobuf-java-util:3.4.0',
     hash = 'e7fb40f29053441632277d75952874b3e03bf68a',
+    sources = False,
     deps = [
         ':protobuf',
     ],
-    sources = False,
 )
 
 maven_jar(
     name = 'protoc-gen-grpc-java',
-    id = 'io.grpc:protoc-gen-grpc-java:0.15.0',
-    hash = '72b7fdc7047cd628f5c6365f8f2f255b8a293cb6',
+    id = 'io.grpc:protoc-gen-grpc-java:1.6.1',
     binary = True,
+    hash = '72b7fdc7047cd628f5c6365f8f2f255b8a293cb6',
 )
 
 # maven_jars fetches a library and its transitive dependencies from Maven.
@@ -39,7 +39,7 @@ maven_jar(
 # TODO(pebers): Revisit this once issue #120 is resolved.
 maven_jars(
     name = 'grpc-all',
-    id = 'io.grpc:grpc-all:0.15.0',
+    id = 'io.grpc:grpc-all:1.6.1',
     exclude = [
         'protobuf-java',
         'protobuf-java-util',

@@ -10,6 +10,8 @@
 defaulttestpackage = net.thoughtmachine
 
 [python]
+defaultinterpreter = python3
+piptool = pip3
 ; Makes recursive imports of third-party packages happier about this location.
 moduledir = third_party.python
 

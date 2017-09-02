@@ -5,11 +5,11 @@
 package(default_visibility = ['PUBLIC'])
 
 # go_get invokes, not unsurprisingly, 'go get' to fetch a third-party package.
-# Note that we can specify Git revisions to pin them to a particular version.
+# Note that we can specify Git revisions or tags to pin them to a particular version.
 go_get(
     name = 'grpc',
     get = 'google.golang.org/grpc',
-    revision = '461dac99975b211ed3eda7eb45b997d82da4345a',
+    revision = 'v1.5.0',
     deps = [
         ':protobuf',
     ],
@@ -17,8 +17,6 @@ go_get(
 
 go_get(
     name = 'protoc-gen-go',
-    get = 'github.com/golang/protobuf/protoc-gen-go',
-    revision = '3852dcfda249c2097355a6aabb199a28d97b30df',
     # This produces an executable tool that we use elsewhere;
     # marking this makes it easy to use in other rules or through
     # plz run since it will only produce a single output.
@@ -26,12 +24,14 @@ go_get(
     # $(exe //third_party/go:protoc-gen-go) which Please will
     # expand into the appropriate location.
     binary = True,
+    get = 'github.com/golang/protobuf/protoc-gen-go',
+    revision = 'v1.5.0',
 )
 
 go_get(
     name = 'protobuf',
     get = 'github.com/golang/protobuf/proto',
-    revision = '3852dcfda249c2097355a6aabb199a28d97b30df',
+    revision = '17ce1425424ab154092bbb43af630bd647f3bb0d',
 )
 
 go_get(

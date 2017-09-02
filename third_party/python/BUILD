@@ -8,8 +8,8 @@ package(default_visibility = ['PUBLIC'])
 # Note that dependencies have to be specified explicitly.
 pip_library(
     name = 'protobuf',
-    outs = ['google'],
-    version = '3.0.0b3',
+    version = '3.4.0',
+    outs = ['google/protobuf'],
     deps = [
         ':six',
     ],
@@ -18,8 +18,7 @@ pip_library(
 pip_library(
     name = 'grpc',
     package_name = 'grpcio',
-    version = '0.15.0',
-    deps = [':enum', ':futures'],
+    version = '1.6.0',
     zip_safe = False,  # cygrpc.so can't be imported from inside a .pex.
 )
 
@@ -32,19 +31,7 @@ pip_library(
 )
 
 pip_library(
-    name = 'enum',
-    version = '1.1.6',
-    package_name = 'enum34',
-)
-
-pip_library(
-    name = 'futures',
-    version = '3.0.5',
-    outs = ['concurrent']
-)
-
-pip_library(
     name = 'gflags',
-    version = '3.0.5',
     package_name = 'python-gflags',
+    version = '3.0.5',
 )
