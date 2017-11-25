@@ -6,9 +6,6 @@
 ; run `./pleasew update` to update again.
 ;
 
-[java]
-defaulttestpackage = net.thoughtmachine
-
 [python]
 defaultinterpreter = python3
 piptool = pip3
@@ -18,6 +15,8 @@ moduledir = third_party.python
 [proto]
 ; Imports protobuf from a non-usual directory in generated code.
 pythonpackage = third_party.python.google.protobuf
-; Use a downloaded dep, this is easier to manage than a global installation.
+; Use a downloaded protoc and deps where available, this is
+; easier to manage than a global installation.
+protoctool = //third_party/proto:protoc
 protocgoplugin = //third_party/go:protoc-gen-go
 grpcjavaplugin = //third_party/java:protoc-gen-grpc-java
