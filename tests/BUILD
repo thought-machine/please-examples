@@ -20,7 +20,7 @@ BREEDS = {
 port = 9000
 
 for server, breed in sorted(BREEDS.items()):
-    for client in sorted(BREEDS):
+    for client in sorted(BREEDS.keys()):
         # This is a new build rule that was loaded in the subinclude() call earlier.
         # See build_defs/integration_test.build_defs if you're curious about how
         # it's defined.

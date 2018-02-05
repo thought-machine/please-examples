@@ -4,7 +4,7 @@
 
 
 # Some implementation details of the rules below.
-_KNOWN_LANGUAGES = {'cc', 'java', 'python', 'go'}
+_KNOWN_LANGUAGES = ['cc', 'java', 'python', 'go']
 
 _COMMAND_TEMPLATE = """
 %(server)s --port %(port)d &
@@ -36,15 +36,15 @@ def integration_test(client, server, port, breed):
         raise ValueError('Unknown server language: %s' % server)
     client_target = '//%s:client' % ('go/client' if client == 'go' else client)
     server_target = '//%s:server' % ('go/server' if server == 'go' else server)
-    test_cmd = _COMMAND_TEMPLATE % {
-        'port': port,
-        'breed': breed,
+    test_cmd = _COMMAND_TEMPLATE.format(
+        port=port,
+        breed=breed,
         # $(location ) is not a normal Bash pattern, it is something that
         # Please replaces for you in commands. It's useful for finding the location
         # of an input file or rule.
-        'client': '$(location %s)' % client_target,
-        'server': '$(location %s)' % server_target,
-    }
+        client='$(location %s)' % client_target,
+        server='$(location %s)' % server_target,
+    )
 
     # gentest is an advanced build rule which allows you to define an arbitrary
     # test. It's relatively low-level compared to python_test or java_test etc,
@@ -66,4 +66,9 @@ def integration_test(client, server, port, breed):
         # In this case our tests can be a bit flaky because when they're all run
         # at once sometimes things time out.
         flaky = True,
+        # Labels are arbitrary string labels applied to tests, which lets them
+        # be selected via the --include and --exclude command-line flags.
+        # Here we tag the tests as integration tests (maybe a lightweight test
+        # run might exclude those) and with the appropriate languages.
+        labels = [client, server, 'integration'],
     )
