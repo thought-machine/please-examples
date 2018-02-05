@@ -19,7 +19,6 @@ pip_library(
     name = 'grpc',
     package_name = 'grpcio',
     version = '1.6.0',
-    zip_safe = False,  # cygrpc.so can't be imported from inside a .pex.
 )
 
 pip_library(
