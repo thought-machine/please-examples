@@ -7,11 +7,11 @@
 _KNOWN_LANGUAGES = ['cc', 'java', 'python', 'go']
 
 _COMMAND_TEMPLATE = """
-%(server)s --port %(port)d &
+{server} --port {port} &
 PID=$!
 # Wait a bit to give the server a chance to start.
 sleep 2s
-%(client)s --port %(port)d --breed %(breed)s
+{client} --port {port} --breed {breed}
 RET=$?
 kill $PID
 exit $RET
