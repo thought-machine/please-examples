@@ -10,7 +10,7 @@ def fetch_kitten(request, port):
     :return: The response proto describing the kitten.
     :rtype: kitten_pb2.GetKittenResponse
     """
-    channel = insecure_channel('localhost', port)
+    channel = insecure_channel('localhost:%d' % port)
     stub = kitten_pb2_grpc.PetShopStub(channel)
     return stub.GetKitten(request, 3)
 

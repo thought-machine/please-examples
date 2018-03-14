@@ -3,6 +3,7 @@ import time
 from concurrent import futures
 
 from third_party.python import gflags as flags
+from third_party.python import grpc
 from proto import kitten_pb2, kitten_pb2_grpc
 from python.kitten_lib import provide_kitten
 
@@ -11,7 +12,7 @@ flags.DEFINE_integer('port', 9232, 'The port to serve on')
 FLAGS = flags.FLAGS
 
 
-class PetShop(kitten_pb2.PetShopServicer):
+class PetShop(kitten_pb2_grpc.PetShopServicer):
 
     def GetKitten(self, request, context):
         return kitten_pb2.GetKittenResponse(kitten=provide_kitten())
