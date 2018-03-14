@@ -18,7 +18,17 @@ pip_library(
 pip_library(
     name = 'grpc',
     package_name = 'grpcio',
-    version = '1.6.0',
+    version = '1.9.0',
+    deps = [
+        ':pkg_resources',
+        ':six',
+    ],
+)
+
+pip_library(
+    name = 'pkg_resources',
+    package_name = 'setuptools',
+    version = '33.1.1',
 )
 
 pip_library(
