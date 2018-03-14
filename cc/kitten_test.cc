@@ -1,4 +1,4 @@
-#include <unittest++/UnitTest++.h>
+#include <UnitTest++/UnitTest++.h>
 #include "cc/kitten.h"
 
 namespace thought_machine {
