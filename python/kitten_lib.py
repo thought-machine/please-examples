@@ -1,5 +1,5 @@
-from third_party.python.grpc.beta.implementations import insecure_channel
-from proto import kitten_pb2
+from third_party.python.grpc import insecure_channel
+from proto import kitten_pb2, kitten_pb2_grpc
 
 
 def fetch_kitten(request, port):
@@ -11,8 +11,8 @@ def fetch_kitten(request, port):
     :rtype: kitten_pb2.GetKittenResponse
     """
     channel = insecure_channel('localhost', port)
-    with kitten_pb2.beta_create_PetShop_stub(channel) as stub:
-        return stub.GetKitten(request, 3)
+    stub = kitten_pb2_grpc.PetShopStub(channel)
+    return stub.GetKitten(request, 3)
 
 
 def get_kitten(port, breed=None):
