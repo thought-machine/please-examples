@@ -88,8 +88,8 @@ go_get(
     # $(exe //third_party/go:protoc-gen-go) which Please will
     # expand into the appropriate location.
     binary = True,
-    get = 'github.com/golang/protobuf/protoc-gen-go',
-    revision = '130e6b02ab059e7b717a096f397c5b60111cae74',
+    get = [],
+    install = ['github.com/golang/protobuf/protoc-gen-go'],
     deps = [
         ':protobuf',
     ],
