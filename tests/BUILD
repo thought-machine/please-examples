@@ -25,9 +25,9 @@ for server, breed in sorted(BREEDS.items()):
         # See build_defs/integration_test.build_defs if you're curious about how
         # it's defined.
         integration_test(
-            client = client,
-            server = server,
-            port = port,
-            breed = breed,
+            client=client,
+            server=server,
+            port=port,
+            breed=breed,
         )
         port += 1

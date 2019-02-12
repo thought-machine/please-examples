@@ -50,25 +50,25 @@ def integration_test(client, server, port, breed):
     # test. It's relatively low-level compared to python_test or java_test etc,
     # but sometimes it's what you need.
     gentest(
-        name = '%s_client_vs_%s_server_test' % (client, server),
-        test_cmd = test_cmd,
+        name='%s_client_vs_%s_server_test' % (client, server),
+        test_cmd=test_cmd,
         # The 'data' attribute defines runtime data files that are made available
         # to the test in its work directory. It's useful for tests that need
         # additional files in a predictable place but don't want to package them
         # themselves.
-        data = [client_target, server_target],
+        data=[client_target, server_target],
         # Normally tests produce an xUnit-style XML file or Go-format test output
         # as results which Please parses. We're not going to do that so we'll be
         # judged just on whether our test returns successfully or not.
-        no_test_output = True,
+        no_test_output=True,
         # Tests can be marked as flaky, in which case Please automatically retries
         # them up to three times. They pass as soon as any one passes.
         # In this case our tests can be a bit flaky because when they're all run
         # at once sometimes things time out.
-        flaky = True,
+        flaky=True,
         # Labels are arbitrary string labels applied to tests, which lets them
         # be selected via the --include and --exclude command-line flags.
         # Here we tag the tests as integration tests (maybe a lightweight test
         # run might exclude those) and with the appropriate languages.
-        labels = [client, server, 'integration'],
+        labels=[client, server, 'integration'],
     )

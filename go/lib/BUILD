@@ -6,22 +6,22 @@
 # in separate directories.
 
 go_library(
-    name = 'lib',
-    srcs = ['kitten.go'],
-    deps = [
+    name='lib',
+    srcs=['kitten.go'],
+    deps=[
         '//proto:kitten',
         '//third_party/go:grpc',
     ],
-    visibility = ['//go/...'],
+    visibility=['//go/...'],
 )
 
 # A go_test is similar to a go_binary in that it builds a self-contained
 # executable, but it's typically run through 'plz test' to run all its
 # tests and report their results.
 go_test(
-    name = 'kitten_test',
-    srcs = ['kitten_test.go'],
-    deps = [
+    name='kitten_test',
+    srcs=['kitten_test.go'],
+    deps=[
         ':lib',
         '//third_party/go:testify',
     ],
