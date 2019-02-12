@@ -19,7 +19,7 @@ Dependencies
 
 Note that you will need to have the gRPC codegen plugins installed
 for C++ and Python in order to run those tests. Currently that requires
-compiling and installing it (see [their instructions](https://github.com/grpc/grpc/blob/master/INSTALL.md)
+compiling and installing it (see [their instructions](https://github.com/grpc/grpc/blob/v1.18.0/src/cpp/README.md)
 for details) which can be a bit involved.
 
 If you'd like to get a feeling for Please without that, it's possible
