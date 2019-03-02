@@ -11,8 +11,6 @@
 moduledir = third_party.python
 
 [proto]
-; Imports protobuf from a non-usual directory in generated code.
-pythonpackage = third_party.python.google.protobuf
 ; Use a downloaded protoc and deps where available, this is
 ; easier to manage than a global installation.
 protoctool = //third_party/proto:protoc
