@@ -16,3 +16,7 @@ moduledir = third_party.python
 protoctool = //third_party/proto:protoc
 protocgoplugin = //third_party/go:protoc-gen-go
 grpcjavaplugin = //third_party/java:protoc-gen-grpc-java
+
+[cpp]
+TestMain = ///third_party/cc/gtest//:gtest_main
+

@@ -10,7 +10,7 @@ package(default_visibility = ["PUBLIC"])
 subinclude("///pleasings//java:maven_jars")
 
 # This is temporarily necessary to work around a small bug.
-package(maven_tool = "///pleasings//java/maven")
+package(maven_tool = "///pleasings//java/maven:please_maven")
 
 # maven_jar fetches a single .jar file from Maven.
 # Note that it doesn't fetch dependencies, we have to specify them explicitly.

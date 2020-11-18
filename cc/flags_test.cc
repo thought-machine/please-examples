@@ -1,4 +1,4 @@
-#include <UnitTest++/UnitTest++.h>
+#include "gtest/gtest.h"
 #include "cc/flags.h"
 
 namespace thought_machine {
