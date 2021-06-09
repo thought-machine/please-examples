@@ -11,3 +11,4 @@ go_binary(
     ],
     visibility = ['PUBLIC'],
 )
+

@@ -9,7 +9,6 @@ package(default_visibility = ['PUBLIC'])
 pip_library(
     name = 'protobuf',
     version = '3.4.0',
-    outs = ['google'],
     deps = [
         ':six',
     ],
@@ -34,9 +33,6 @@ pip_library(
 pip_library(
     name = 'six',
     version = '1.10.0',
-    # If the library doesn't output into a directory the same as the
-    # rule name, we have to tell Please what it's supposed to output here.
-    outs = ['six.py'],
 )
 
 pip_library(

@@ -62,3 +62,4 @@ cc_test(
         '//proto:kitten',
     ],
 )
+
